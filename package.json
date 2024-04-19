@@ -19,5 +19,23 @@
   "bugs": {
     "url": "https://github.com/JasonWarrenUK/FAC-Project-Microblog/issues"
   },
-  "homepage": "https://github.com/JasonWarrenUK/FAC-Project-Microblog#readme"
+  "homepage": "https://github.com/JasonWarrenUK/FAC-Project-Microblog#readme",
+	"dependencies": {
+		"express": "^4.18.1"
+	},
+	"devDependencies": {
+		"eslint": "^8.23.0"
+	},
+	"volta": {
+		"node": "18.17.1"
+	},
+	"eslintConfig": {
+		"extends": "eslint:recommended",
+		"env": {
+			"commonjs": true,
+			"es2021": true,
+			"node": true
+		}
+	}
 }
+
