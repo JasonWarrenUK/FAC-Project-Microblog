@@ -1,0 +1,23 @@
+{
+  "name": "microblog",
+  "version": "1.0.0",
+  "description": "A small microblog project for the Founders & Coders course",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JasonWarrenUK/FAC-Project-Microblog.git"
+  },
+  "keywords": [
+    "server",
+    "microblog"
+  ],
+  "author": "Jason Warren",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JasonWarrenUK/FAC-Project-Microblog/issues"
+  },
+  "homepage": "https://github.com/JasonWarrenUK/FAC-Project-Microblog#readme"
+}
