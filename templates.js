@@ -1,10 +1,16 @@
 const { sanitize, valid } = require("./utils");
+const { html } = require('lit-html');
+
+
+//** Pages
+//// Make sure these call layout()
 
 function home(posts, formData) {
   const title = "All posts";
 
-  const content = /*html*/ `
-    <h2>New post</h2>
+  const content = html`<h1>Shouty Place</h1>
+		<h2>New post</h2>
+
     <form method="POST">
       <p>
 				<label for="nickname">Nickname</label>
@@ -34,18 +40,13 @@ function home(posts, formData) {
   return layout(title, content);
 }
 
-function postItem(post) {
-	// console.groupCollapsed(`Post Received`);
-	// console.log(post.message);
-	// console.groupEnd();
+//** Post a Message
 
-  const date = new Date(post.created).toLocaleString("en-GB");
-  // const prettyDate = date.toLocaleString("en-GB");
+function postItem(post) {
+	const date = new Date(post.created).toLocaleString("en-GB");
 
 	// console.log(`Calling Sanitize`);
 	const message = sanitize(post.message);
-	// console.log(`Sanitize Finished`);
-	// console.log(`Received ${message}`);
 
   return `
     <li>
@@ -54,6 +55,10 @@ function postItem(post) {
     </li>
   `;
 }
+
+
+//** Build the Page
+//// Don't call this directly from server
 
 function layout(title, content) {
   return /*html*/ `
