@@ -4,7 +4,7 @@ const server = express();
 const staticHandler = express.static("public");
 // const bodyParser = express.urlencoded();
 
-const { home } = require("./templates.js");
+const { home } = require("./pages.js");
 
 const { valid, validReset } = require("./utils.js");
 

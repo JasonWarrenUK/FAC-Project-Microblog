@@ -1,4 +1,4 @@
-//** Sanitize Posts
+// Sanitize Posts
 
 function sanitize(dirty) {
 	// console.groupCollapsed(`Running Sanitize`);
@@ -42,7 +42,7 @@ function sanitize(dirty) {
 	return clean;
 }
 
-//** Validate Posts
+// Validate Posts
 
 let valid = {
 	name: true,

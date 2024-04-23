@@ -2,13 +2,15 @@ const { sanitize, valid } = require("./utils");
 const { html } = require('lit-html');
 
 
-//** Pages
-//// Make sure these call layout()
+// Pages
+//** Make sure these call layout()
 
 function home(posts, formData) {
-  const title = "All posts";
+  const title = "Welcome to Goblin Chat";
 
-  const content = html`<h1>Shouty Place</h1>
+  const content = html`
+		<h1>Shouty Place</h1>
+		
 		<h2>New post</h2>
 
     <form method="POST">
@@ -37,10 +39,11 @@ function home(posts, formData) {
       ${posts.map(postItem).join("")}
     </ul>
   `;
+
   return layout(title, content);
 }
 
-//** Post a Message
+// Post a Message
 
 function postItem(post) {
 	const date = new Date(post.created).toLocaleString("en-GB");
@@ -57,8 +60,8 @@ function postItem(post) {
 }
 
 
-//** Build the Page
-//// Don't call this directly from server
+// Build the Page
+//** Don't call this directly from server
 
 function layout(title, content) {
   return /*html*/ `
