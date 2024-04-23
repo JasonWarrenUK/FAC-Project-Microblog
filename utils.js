@@ -1,3 +1,5 @@
+// Sanitize Posts
+
 function sanitize(dirty) {
 	// console.groupCollapsed(`Running Sanitize`);
 	// console.log(`Input: ${dirty}`);
@@ -39,6 +41,8 @@ function sanitize(dirty) {
 	
 	return clean;
 }
+
+// Validate Posts
 
 let valid = {
 	name: true,
