@@ -15,3 +15,5 @@ function layout(title, content) {
     </html>
   `;
 }
+
+module.exports = { layout };

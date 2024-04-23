@@ -4,7 +4,7 @@ const server = express();
 const staticHandler = express.static("public");
 // const bodyParser = express.urlencoded();
 
-const { home } = require("./pages.js");
+const { home, read, write } = require("./pages.js");
 
 const { valid, validReset } = require("./utils.js");
 
@@ -16,13 +16,25 @@ function logger(req, res, next) {
 server.use(staticHandler);
 server.use(logger);
 
-/* ----- POSTS ----- */
+/* ----- PAGES ----- */
 const posts = [];
 
 server.get("/", (req, res) => {
   const body = home(posts);
   res.send(body);
 });
+
+server.get("/write", (req, res) => {
+	const body = write();
+	res.send(body);
+})
+
+server.get("/read", (req, res) => {
+	const body = read(posts);
+	res.send(body);
+})
+
+/* ----- ACTIONS ----- */
 
 server.post("/", express.urlencoded({ extended: false }), (req, res) => {
 	validReset();

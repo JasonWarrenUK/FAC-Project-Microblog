@@ -1,20 +1,24 @@
-const { sanitize, valid } = require("./utils");
-const { html } = require('lit-html');
-
+const { valid } = require("./utils");
+const { postItem } = require( "./actions");
+const { blockTitle, blockLinks } = require("./blocks");
 
 // Pages
 //** Make sure these call layout()
 
 function home(posts, formData) {
-  const title = "Welcome to Goblin Chat";
+  const title = "Goblin Chat";
 
-  const content = html`
-		<h1>Shouty Place</h1>
+  const content = `
+		${blockTitle.home}
+
+		${blockLinks.write} • ${blockLinks.read}
 		
 		<h2>New post</h2>
 
-    <form method="POST">
-      <p>
+		<a href></a>
+
+		<form method="POST">
+			<p>
 				<label for="nickname">Nickname</label>
 				<input
 					id="nickname"
@@ -22,16 +26,16 @@ function home(posts, formData) {
 					value="${formData && formData.nickname ? formData.nickname : ''}"
 				>
 				${valid.nameWarn}
-      </p>
+			</p>
 
-      <p>
+			<p>
 				<label for="message">Message</label>
 				<textarea id="message" name="message">${formData && formData.message ? formData.message : ''}</textarea>
 				${valid.messageWarn}
-      </p>
+			</p>
 
-      <button>Send</button>
-    </form>
+			<button>Send</button>
+		</form>
 
     <h2>All posts</h2>
 
@@ -43,20 +47,51 @@ function home(posts, formData) {
   return layout(title, content);
 }
 
-// Post a Message
+function write(formData) {
+  const title = "Goblin Chat";
 
-function postItem(post) {
-	const date = new Date(post.created).toLocaleString("en-GB");
+  const content = `${blockTitle.write}
 
-	// console.log(`Calling Sanitize`);
-	const message = sanitize(post.message);
+		${blockLinks.home} • ${blockLinks.read}
+		
+		<form method="POST">
+			<p>
+				<label for="nickname">Nickname</label>
+				<input
+					id="nickname"
+					name="nickname"
+					value="${formData && formData.nickname ? formData.nickname : ''}"
+				>
+				${valid.nameWarn}
+			</p>
 
-  return `
-    <li>
-      <p>${message}</p>
-      <p>—${post.nickname} | ${date}</p>
-    </li>
+			<p>
+				<label for="message">Message</label>
+				<textarea id="message" name="message">${formData && formData.message ? formData.message : ''}</textarea>
+				${valid.messageWarn}
+			</p>
+
+			<button>Send</button>
+		</form>
   `;
+
+  return layout(title, content);
+}
+
+function read(posts) {
+  const title = "Goblin Chat";
+
+  const content = `
+		${blockTitle.read}
+
+		${blockLinks.home} • ${blockLinks.write}
+
+    <ul>
+      ${posts.map(postItem).join("")}
+    </ul>
+  `;
+
+  return layout(title, content);
 }
 
 
@@ -78,4 +113,4 @@ function layout(title, content) {
   `;
 }
 
-module.exports = { home };
+module.exports = { home, read, write };

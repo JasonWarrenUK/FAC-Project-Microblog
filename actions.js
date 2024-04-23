@@ -1,3 +1,5 @@
+const { sanitize } = require("./utils");
+
 // Post a Message
 
 function postItem(post) {
@@ -13,3 +15,5 @@ function postItem(post) {
     </li>
   `;
 }
+
+module.exports = { postItem };
